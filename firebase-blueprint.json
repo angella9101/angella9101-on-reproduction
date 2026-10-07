@@ -1,0 +1,77 @@
+{
+  "entities": {
+    "Order": {
+      "title": "Order",
+      "description": "Customer purchase order for saengsik products",
+      "type": "object",
+      "properties": {
+        "customerName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 25
+        },
+        "address": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "detailAddress": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "requestNote": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "productName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "bundleCount": {
+          "type": "integer"
+        },
+        "quantity": {
+          "type": "integer"
+        },
+        "totalAmount": {
+          "type": "integer"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["card", "kakaopay", "naverpay", "vbank", "tosspay"]
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pending", "paid", "preparing", "shipped", "delivered", "cancelled"]
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "customerName",
+        "phone",
+        "address",
+        "productName",
+        "bundleCount",
+        "quantity",
+        "totalAmount",
+        "paymentMethod",
+        "status",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Collection of customer purchase orders"
+    }
+  }
+}
